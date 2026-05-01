@@ -1,0 +1,1 @@
+{% extends "base.html" %}{% block content %}<section class="container section"><h1>Лента новостей</h1><div class="grid">{% for title,text in news %}<div class="card"><h3>{{ title }}</h3><p>{{ text }}</p><span class="badge">2026</span></div>{% endfor %}</div></section>{% endblock %}

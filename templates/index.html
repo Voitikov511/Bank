@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero"><div class="container"><h1>Современный банк для ежедневных финансовых задач</h1><p>Карты, кредиты, вклады, новости, финансовая безопасность и удобная обратная связь в одном веб-сервисе.</p><a class="btn alt" href="{{ url_for('services') }}">Выбрать услугу</a></div></section>
+<section class="container section"><h2>Популярные услуги</h2><div class="grid">
+<div class="card"><h3>Карты</h3><p>Дебетовые, кредитные и виртуальные карты для покупок и переводов.</p></div>
+<div class="card"><h3>Кредиты</h3><p>Потребительские кредиты, ипотека, автокредит и рефинансирование.</p></div>
+<div class="card"><h3>Вклады</h3><p>Накопительные продукты для защиты и роста сбережений.</p></div>
+</div><h2>Новости банка</h2><div class="grid">{% for n in news %}<div class="card"><h3>{{ n[0] }}</h3><p>{{ n[1] }}</p></div>{% endfor %}</div></section>
+{% endblock %}

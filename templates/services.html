@@ -1,0 +1,5 @@
+{% extends "base.html" %}{% block content %}<section class="container section"><h1>Банковские услуги</h1><div class="grid">
+{% for product in ["Дебетовая карта","Кредитная карта","Потребительский кредит","Ипотека","Вклад","Накопительный счет"] %}
+<div class="card"><h3>{{ product }}</h3><p>Оставьте заявку, чтобы сотрудник банка подготовил индивидуальные условия.</p><form method="post" action="{{ url_for('apply') }}" class="form"><input type="hidden" name="product" value="{{ product }}"><input class="field" name="name" placeholder="Ваше имя" required><input class="field" name="phone" placeholder="Телефон" required><input class="field" name="amount" placeholder="Сумма / лимит"><button class="btn">Отправить заявку</button></form></div>
+{% endfor %}
+</div></section>{% endblock %}

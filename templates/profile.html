@@ -1,0 +1,1 @@
+{% extends "base.html" %}{% block content %}<section class="container section"><h1>Личный кабинет</h1><div class="card"><p>Пользователь: <b>{{ current_user }}</b></p><p>Роль: <b>{{ session.role }}</b></p>{% if session.role=="employee" %}<a class="btn" href="{{ url_for('admin') }}">Панель сотрудника</a>{% endif %}</div></section>{% endblock %}

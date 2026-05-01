@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>{{ title or "БанкПлюс" }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="БанкПлюс: банковские услуги, карты, кредиты, вклады, новости и финансовая безопасность.">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="{{ 'visually' if style == 'visually' else '' }}">
+<a class="skip-link" href="#main">Перейти к содержанию</a>
+
+<header class="site-header">
+    <div class="container header-inner">
+        <a class="logo" href="{{ url_for('index') }}">
+            <span class="logo-mark">Б+</span>
+            <span>БанкПлюс</span>
+        </a>
+
+        <nav class="main-nav" aria-label="Главное меню">
+            <a href="{{ url_for('index') }}">Главная</a>
+            <a href="{{ url_for('about') }}">О банке</a>
+            <a href="{{ url_for('services') }}">Услуги</a>
+            <a href="{{ url_for('articles') }}">Статьи</a>
+            <a href="{{ url_for('news') }}">Новости</a>
+            <a href="{{ url_for('contacts') }}">Контакты</a>
+            <a href="{{ url_for('sitemap') }}">Карта сайта</a>
+        </nav>
+
+        <div class="header-actions">
+            <form class="search-mini" action="{{ url_for('search') }}" method="get">
+                <input name="q" placeholder="Поиск" aria-label="Поиск по сайту">
+                <button type="submit">Найти</button>
+            </form>
+
+            <a class="accessibility-btn" href="{{ url_for('set_style', mode='standard' if style == 'visually' else 'visually') }}">
+                {{ "Обычная версия" if style == "visually" else "Для слабовидящих" }}
+            </a>
+
+            {% if current_user %}
+                <a class="login-link" href="{{ url_for('profile') }}">Кабинет</a>
+            {% else %}
+                <a class="login-link" href="{{ url_for('login') }}">Вход</a>
+            {% endif %}
+        </div>
+    </div>
+</header>
+
+<main id="main">
+    <div class="container">
+        {% for message in get_flashed_messages() %}
+            <div class="notice" role="status">{{ message }}</div>
+        {% endfor %}
+    </div>
+
+    {% block content %}{% endblock %}
+</main>
+
+<footer class="site-footer">
+    <div class="container footer-grid">
+        <div>
+            <h3>БанкПлюс</h3>
+            <p>Надежные банковские продукты для физических лиц: карты, кредиты, вклады и консультации по финансовой безопасности.</p>
+        </div>
+        <div>
+            <h3>Навигация</h3>
+            <a href="{{ url_for('services') }}">Услуги</a>
+            <a href="{{ url_for('articles') }}">Статьи</a>
+            <a href="{{ url_for('contacts') }}">Обратная связь</a>
+        </div>
+        <div>
+            <h3>Контакты</h3>
+            <p>8 800 100-00-00</p>
+            <p>Москва, ул. Финансовая, д. 1</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        © 2026 БанкПлюс. Все права защищены.
+    </div>
+</footer>
+</body>
+</html>
